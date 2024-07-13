@@ -1,10 +1,13 @@
 import Counter from "./components/counter";
+import TodoContents from "./components/todoContent";
+
 
 
 function App() {
   return (
     <div>
-    <Counter />
+      <Counter />
+      <TodoContents/>
     </div>
   );
 }
