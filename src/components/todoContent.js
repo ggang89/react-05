@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import TodoInputBox from "./TodoInputBox";
+import TodoList from "./TodoList";
+
 export default function TodoContents() {
   const [inputText, setInputText] = useState(" ");
   const [todoList, setTodoList] = useState([]);
@@ -56,15 +59,11 @@ export default function TodoContents() {
   return (
     <>
       <div>
-        {/* 새로운 투두 추가창 */}
-        <label htmlFor="addTodo">new Todo</label>
-        <input
-          id="addTodo"
-          value={inputText}
-          type="text"
-          onChange={handleAddtext}
-        ></input>
-        <button onClick={addTodoBtn}>추가</button>
+        <TodoInputBox
+          inputText={inputText}
+          addTodo={addTodoBtn}
+          handleAddtext2={handleAddtext}
+        />
       </div>
 
       {/* 투두 리스트 */}
