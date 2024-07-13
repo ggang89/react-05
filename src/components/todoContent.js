@@ -33,7 +33,16 @@ export default function TodoContents() {
     const newArr = todoList.filter((t) => id !== t.id);
     setTodoList(newArr);
   };
-  const completeBtn = () => {};
+  const completeBtn = (id) => {
+    const newArr = todoList.map((t) => {
+      if (id === t.id) {
+        return { ...t, isEditing: !t.isEditing };
+      } else {
+        return t;
+      }
+    });
+    setTodoList(newArr);
+  };
   const handleInText = (e, id) => {
     const newArr = todoList.map((t) => {
       if (id === t.id) {
@@ -68,7 +77,13 @@ export default function TodoContents() {
                   value={t.todoTitle}
                   onChange={(e) => handleInText(e, t.id)}
                 ></input>
-                <button onClick={completeBtn}>완료</button>
+                <button
+                  onClick={() => {
+                    completeBtn(t.id);
+                  }}
+                >
+                  완료
+                </button>
               </>
             ) : (
               <>
