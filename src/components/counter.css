@@ -1,0 +1,20 @@
+.counterBox {
+  margin: 0 auto;
+  width: 400px;
+  height: 200px;
+  background-color: #efb8b8;
+  align-items: center;
+  display: flex;
+  /*버튼,text 일렬로  */
+  padding: 10px;
+  justify-content: center;
+  /* 안의 내용물 가운데 정렬 */
+}
+.text {
+  margin: 20px;
+}
+.btn {
+  padding: 10px 20px;
+  background-color: yellowgreen;
+  border: none;
+}
