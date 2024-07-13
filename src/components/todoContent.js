@@ -58,52 +58,29 @@ export default function TodoContents() {
   };
   return (
     <>
-      <div>
-        <TodoInputBox
-          inputText={inputText}
-          addTodo={addTodoBtn}
-          handleAddtext2={handleAddtext}
-        />
-      </div>
+      <TodoInputBox
+        inputText={inputText}
+        addTodo={addTodoBtn}
+        handleAddtext2={handleAddtext}
+      />
 
-      {/* 투두 리스트 */}
       <ul>
         {todoList.map((t) => (
-          <li key={t.id}>
-            {t.isEditing ? (
-              <>
-                <input
-                  value={t.todoTitle}
-                  onChange={(e) => handleInText(e, t.id)}
-                ></input>
-                <button
-                  onClick={() => {
-                    completeBtn(t.id);
-                  }}
-                >
-                  완료
-                </button>
-              </>
-            ) : (
-              <>
-                <p>{t.todoTitle}</p>
-                <button
-                  onClick={() => {
-                    edit(t.id);
-                  }}
-                >
-                  수정
-                </button>
-                <button
-                  onClick={() => {
-                    del(t.id);
-                  }}
-                >
-                  삭제
-                </button>
-              </>
-            )}
-          </li>
+          <TodoList
+            edit={() => {
+              edit(t.id);
+            }}
+            del={() => {
+              del(t.id);
+            }}
+            completeBtn={() => {
+              completeBtn(t.id);
+            }}
+            handleInText={(e) => handleInText(e, t.id)}
+            isEditing={t.isEditing}
+            todoTitle={t.todoTitle}
+            key={t.id}
+          />
         ))}
       </ul>
     </>
