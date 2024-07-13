@@ -1,22 +1,33 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 export default function TodoContents() {
-  const [addTodo, setAddTodo] = useState(" ");
+  const [inputText, setInputText] = useState(" ");
   const [todoList, setTodoList] = useState([]);
 
   const addTodoBtn = () => {
     const newArr = {
       id: uuidv4(),
-      todoTitle: addTodo,
-      isEdting: false,
+      todoTitle: inputText,
+      isEditing: false,
     };
 
     setTodoList([newArr, ...todoList]);
-    setAddTodo(" ");
+    setInputText(" ");
   };
   const handleAddtext = (e) => {
-    setAddTodo(e.target.value);
+    setInputText(e.target.value);
   };
+
+  const edit = () => {
+    
+  }
+
+  const del = () => {
+    
+  }
+  const completeBtn = () => {
+    
+  }
   return (
     <>
       <div>
@@ -24,7 +35,7 @@ export default function TodoContents() {
         <label htmlFor="addTodo">new Todo</label>
         <input
           id="addTodo"
-          value={addTodo}
+          value={inputText}
           type="text"
           onChange={handleAddtext}
         ></input>
@@ -32,7 +43,24 @@ export default function TodoContents() {
       </div>
 
       {/* 투두 리스트 */}
-      <ul></ul>
+      <ul>
+        {todoList.map((t) => (
+          <li>
+            {t.isEditing ? (
+              <>
+                <input value={t.todoTitle}></input>
+                <button onClick={completeBtn}>완료</button>
+              </>
+            ) : (
+              <>
+                <p>{t.todoTitle}</p>
+                <button onClick={edit}>수정</button>
+                <buttonon Click={del}>삭제</buttonon>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
