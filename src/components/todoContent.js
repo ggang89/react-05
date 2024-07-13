@@ -4,13 +4,13 @@ export default function TodoContents() {
   const [inputText, setInputText] = useState(" ");
   const [todoList, setTodoList] = useState([]);
 
-  const addTodoBtn = () => {
+  const addTodoBtn = (e) => {
     const newArr = {
       id: uuidv4(),
       todoTitle: inputText,
       isEditing: false,
     };
-
+    console.log(e);
     setTodoList([newArr, ...todoList]);
     setInputText(" ");
   };
@@ -18,16 +18,32 @@ export default function TodoContents() {
     setInputText(e.target.value);
   };
 
-  const edit = () => {
-    
-  }
+  const edit = (id) => {
+    const newArr = todoList.map((t) => {
+      if (id === t.id) {
+        return { ...t, isEditing: !t.isEditing };
+      } else {
+        return t;
+      }
+    });
+    setTodoList(newArr);
+  };
 
-  const del = () => {
-    
-  }
-  const completeBtn = () => {
-    
-  }
+  const del = (id) => {
+    const newArr = todoList.filter((t) => id !== t.id);
+    setTodoList(newArr);
+  };
+  const completeBtn = () => {};
+  const handleInText = (e, id) => {
+    const newArr = todoList.map((t) => {
+      if (id === t.id) {
+        return { ...t, todoTitle: e.target.value };
+      } else {
+        return t;
+      }
+    });
+    setTodoList(newArr);
+  };
   return (
     <>
       <div>
@@ -45,17 +61,32 @@ export default function TodoContents() {
       {/* 투두 리스트 */}
       <ul>
         {todoList.map((t) => (
-          <li>
+          <li key={t.id}>
             {t.isEditing ? (
               <>
-                <input value={t.todoTitle}></input>
+                <input
+                  value={t.todoTitle}
+                  onChange={(e) => handleInText(e, t.id)}
+                ></input>
                 <button onClick={completeBtn}>완료</button>
               </>
             ) : (
               <>
                 <p>{t.todoTitle}</p>
-                <button onClick={edit}>수정</button>
-                <buttonon Click={del}>삭제</buttonon>
+                <button
+                  onClick={() => {
+                    edit(t.id);
+                  }}
+                >
+                  수정
+                </button>
+                <button
+                  onClick={() => {
+                    del(t.id);
+                  }}
+                >
+                  삭제
+                </button>
               </>
             )}
           </li>
