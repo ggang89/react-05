@@ -31,7 +31,13 @@ export default function Todo2() {
 
       <>
         <ul>
-          <li>{todoList}</li>
+          {todoList.map((t) => (
+            <li>
+              {t.todoTitle}
+              <button>수정</button>
+              <button>삭제</button>
+            </li>
+          ))}
         </ul>
       </>
     </>
