@@ -33,9 +33,18 @@ export default function Todo2() {
         <ul>
           {todoList.map((t) => (
             <li>
-              {t.todoTitle}
-              <button>수정</button>
-              <button>삭제</button>
+              {t.isEditing ? (
+                <>
+                  <input value={t.todoTitle}></input>
+                  <button>저장</button>
+                </>
+              ) : (
+                <>
+                  <p>{t.todoTitle}</p>
+                  <button>수정</button>
+                  <button>삭제</button>
+                </>
+              )}
             </li>
           ))}
         </ul>
