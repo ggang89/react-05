@@ -10,6 +10,8 @@ export default function TodoList({
   return (
     <>
       <li key={id}>
+        {/* key 값 어디에 연결해줘야 하나
+        props이름이 id라서 부모에 id로 연결하면 오류뜸 */}
         {isEditing ? (
           <>
             <input value={todoTitle} onChange={handleInText}></input>
