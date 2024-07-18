@@ -18,6 +18,16 @@ export default function Todo2() {
     setInputTodo(" ");
     setTodoList([newArr, ...todoList]);
   };
+
+  const edit = (id) => {
+    const arr = {};
+  };
+
+  const del = (id) => {
+    const newArr = todoList.filter((t) => id !== t.id);
+    setTodoList(newArr);
+  };
+
   return (
     <>
       <label htmlFor="newTodo">New Todo</label>
@@ -41,8 +51,21 @@ export default function Todo2() {
               ) : (
                 <>
                   <p>{t.todoTitle}</p>
-                  <button>수정</button>
-                  <button>삭제</button>
+                  <button
+                    onClick={() => {
+                      edit(t.id);
+                    }}
+                  >
+                    수정
+                  </button>
+                  {/* 이게 map함수 안에 있으니까 t.id를 받아올 수 있는건가 */}
+                  <button
+                    onClick={() => {
+                      del(t.id);
+                    }}
+                  >
+                    삭제
+                  </button>
                 </>
               )}
             </li>
