@@ -20,7 +20,14 @@ export default function Todo2() {
   };
 
   const edit = (id) => {
-    const arr = {};
+    const newArr = todoList.map(t => {
+      if (id === t.id) {
+        return { ...t, isEditing: !t.isEditing }
+      } else {
+        return t;
+      }
+    });
+    setTodoList(newArr)
   };
 
   const del = (id) => {
