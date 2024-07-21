@@ -66,21 +66,26 @@ export default function TodoContents() {
 
       <ul>
         {todoList.map((t) => (
-          <TodoList
-            edit={() => {
-              edit(t.id);
-            }}
-            del={() => {
-              del(t.id);
-            }}
-            completeBtn={() => {
-              completeBtn(t.id);
-            }}
-            handleInText={(e) => handleInText(e, t.id)}
-            isEditing={t.isEditing}
-            todoTitle={t.todoTitle}
-            key={t.id}
-          />
+          <li key={t.id}>
+            {/* map의 key값은 렌더링되는 가장 큰 부모에 연결한다
+             만약 div로 자식들을 감샀다면 div에 key연결함.
+             <></>에 연결해주려면, <Fragment key={}>로 이름써줘야함 */}
+
+            <TodoList
+              edit={() => {
+                edit(t.id);
+              }}
+              del={() => {
+                del(t.id);
+              }}
+              completeBtn={() => {
+                completeBtn(t.id);
+              }}
+              handleInText={(e) => handleInText(e, t.id)}
+              isEditing={t.isEditing}
+              todoTitle={t.todoTitle}
+            />
+          </li>
         ))}
       </ul>
     </>
