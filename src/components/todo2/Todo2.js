@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Todo2Add from "./Todo2Add";
+import Todo2List from "./Todo2List";
 
 export default function Todo2() {
   const [inputTodo, setInputTodo] = useState(" ");
@@ -59,55 +61,32 @@ export default function Todo2() {
 
   return (
     <>
-      <label htmlFor="newTodo">New Todo</label>
-      <input
-        onChange={handleInputTodo}
-        value={inputTodo}
-        type="text"
-        id="newTodo"
-      ></input>
-      <button onClick={newTodoBtn}>➕Add Todo</button>
+      <Todo2Add
+        handleInputTodo={handleInputTodo}
+        inputTodo={inputTodo}
+        newTodoBtn={newTodoBtn}
+      />
 
       <>
         <ul>
           {todoList.map((t) => (
             <li key={t.id}>
-              {t.isEditing ? (
-                <>
-                  <input
-                    value={t.todoTitle}
-                    onChange={(e) => {
-                      handleEditTodo(e, t.id);
-                    }}
-                  ></input>
-                  <button
-                    onClick={() => {
-                      saveBtn(t.id);
-                    }}
-                  >
-                    저장
-                  </button>
-                </>
-              ) : (
-                <>
-                  <p>{t.todoTitle}</p>
-                  <button
-                    onClick={() => {
-                      edit(t.id);
-                    }}
-                  >
-                    수정
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      del(t.id);
-                    }}
-                  >
-                    삭제
-                  </button>
-                </>
-              )}
+              <Todo2List
+                isEditing={t.isEditing}
+                todoTitle={t.todoTitle}
+                handleEditTodo={(e) => {
+                  handleEditTodo(e, t.id);
+                }}
+                saveBtn={() => {
+                  saveBtn(t.id);
+                }}
+                edit={() => {
+                  edit(t.id);
+                }}
+                del={() => {
+                  del(t.id);
+                }}
+              />
             </li>
           ))}
         </ul>

@@ -1,12 +1,12 @@
-import Counter from "./components/counter";
-import TodoContents from "./components/todoContent";
-import Todo2 from "./components/Todo2";
+
+import TodoContents from "./components/todo1/todoContent";
+import Todo2 from "./components/todo2/Todo2";
 
 
 function App() {
   return (
     <div>
-      <Counter />
+     
       <TodoContents />
       <Todo2 />
     </div>
