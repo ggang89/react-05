@@ -20,18 +20,40 @@ export default function Todo2() {
   };
 
   const edit = (id) => {
-    const newArr = todoList.map(t => {
+    const newArr = todoList.map((t) => {
       if (id === t.id) {
-        return { ...t, isEditing: !t.isEditing }
+        return { ...t, isEditing: !t.isEditing };
       } else {
         return t;
       }
     });
-    setTodoList(newArr)
+    setTodoList(newArr);
   };
 
   const del = (id) => {
     const newArr = todoList.filter((t) => id !== t.id);
+    setTodoList(newArr);
+  };
+
+  const saveBtn = (id) => {
+    const newArr = todoList.map((t) => {
+      if (id === t.id) {
+        return { ...t, isEditing: !t.isEditing };
+      } else {
+        return t;
+      }
+    });
+    setTodoList(newArr);
+  };
+
+  const handleEditTodo = (e, id) => {
+    const newArr = todoList.map((t) => {
+      if (id === t.id) {
+        return { ...t, todoTitle: e.target.value };
+      } else {
+        return t;
+      }
+    });
     setTodoList(newArr);
   };
 
@@ -49,11 +71,22 @@ export default function Todo2() {
       <>
         <ul>
           {todoList.map((t) => (
-            <li>
+            <li key={t.id}>
               {t.isEditing ? (
                 <>
-                  <input value={t.todoTitle}></input>
-                  <button>저장</button>
+                  <input
+                    value={t.todoTitle}
+                    onChange={(e) => {
+                      handleEditTodo(e, t.id);
+                    }}
+                  ></input>
+                  <button
+                    onClick={() => {
+                      saveBtn(t.id);
+                    }}
+                  >
+                    저장
+                  </button>
                 </>
               ) : (
                 <>
@@ -65,7 +98,7 @@ export default function Todo2() {
                   >
                     수정
                   </button>
-                  {/* 이게 map함수 안에 있으니까 t.id를 받아올 수 있는건가 */}
+
                   <button
                     onClick={() => {
                       del(t.id);
