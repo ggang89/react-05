@@ -2,6 +2,18 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Todo4Input from "./todo4Input";
 import Todo4List from "./todo4List";
+import { styled } from "styled-components";
+const Wrapper = styled.div`
+  margin: 0 auto;
+  width: 600px;
+  padding: 4px;
+  box-sizing: border-box;
+`;
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: #bf4f74;
+`;
 
 export default function Todo4Box() {
   const [inputText, setInputText] = useState("");
@@ -43,8 +55,8 @@ export default function Todo4Box() {
     setTodoList(newArr);
   };
   return (
-    <>
-      <h1>TodoList 4</h1>
+    <Wrapper>
+      <Title>TodoList 4</Title>
       <Todo4Input
         inputText={inputText}
         addTodoBtn={addTodoBtn}
@@ -72,6 +84,6 @@ export default function Todo4Box() {
           </li>
         ))}
       </ul>
-    </>
+    </Wrapper>
   );
 }
