@@ -5,12 +5,15 @@ const Button = styled.button`
   border-radius: 15px;
   padding: 3px 8px;
   margin-left: 3px;
-  background-color: white;
+  /* background-color: ${(props) => (props.bgColor ? "grey" : "white")}; */
+  background-color: ${({ bgColor }) => (bgColor ? "gray" : "white")};
+ 
 `;
+
 const TodoContent = styled.div`
   justify-content: center;
   display: flex;
-  // border-bottom: 1px solid gray;
+  border-bottom: 1px solid gray;
   width: 550px;
   height: 30px;
   padding: 3px;
@@ -43,7 +46,7 @@ export default function Todo4List({
         <TodoContent>
           <Text>{todoTitle}</Text>
           <Button onClick={editBtn}>수정</Button>
-          <Button onClick={delBtn}>삭제</Button>
+          <Button bgColor onClick={delBtn}> 삭제 </Button>
         </TodoContent>
       )}
     </>
