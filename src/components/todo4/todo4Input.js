@@ -18,6 +18,9 @@ const Button = styled.button`
   border-radius: 15px;
   padding: 7px 13px;
   background-color: white;
+  &:hover{
+    cursor: pointer;
+  }
 `;
 export default function Todo4Input({ inputText, addTodoBtn, handleInputText }) {
   return (

@@ -8,6 +8,9 @@ const Button = styled.button`
   background-color: ${(props) => props.bgColor ? "gray" : "white"};
   /* background-color: ${(props) => (props.bgColor ? "grey" : "white")}; */
   /* background-color: ${({ bgColor }) => (bgColor ? "gray" : "white")}; */
+  &:hover{
+   cursor: pointer; 
+  }
 `;
 
 const TodoContent = styled.div`
