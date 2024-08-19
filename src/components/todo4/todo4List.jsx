@@ -5,9 +5,9 @@ const Button = styled.button`
   border-radius: 15px;
   padding: 3px 8px;
   margin-left: 3px;
+  background-color: ${(props) => props.bgColor ? "gray" : "white"};
   /* background-color: ${(props) => (props.bgColor ? "grey" : "white")}; */
-  background-color: ${({ bgColor }) => (bgColor ? "gray" : "white")};
- 
+  /* background-color: ${({ bgColor }) => (bgColor ? "gray" : "white")}; */
 `;
 
 const TodoContent = styled.div`
